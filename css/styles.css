@@ -1,0 +1,135 @@
+/* Google web fonts 'Open Sans' (italic and normal) and 'Boogaloo' */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Boogaloo);
+
+/* reset CSS file to reset browser default styling to a consistent starting point */
+@import url(reset.css);
+
+body {
+	background-color: black;
+    background-repeat: repeat;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    padding: 10px;
+}
+
+nav.navbar ul {
+	background-color: #bbbe30;
+	border-radius: 10px;
+}
+
+nav li {
+    display: inline-block;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+}
+
+nav a:visited,
+nav a:link,
+nav a:hover {
+	color: #4C036E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav li:hover {
+    background-color: #F9FE40;
+}
+h2.description {
+	font-size: 120%;
+	font-style: italic;
+	color: #4C036E;
+}
+
+h1.header {
+	font-family:'Calibri', sans-serif;
+	font-size: 50px;
+	color: #4C036E;
+	padding: 10px;
+}
+
+h3 {
+	font-size: 25px;
+	color: #4C036E;
+}
+
+.icon-right {
+	background-image: url(../img/logo.img);
+    background-position: left top;
+    background-repeat: no-repeat;
+    padding-left: 80px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    min-height: 40px;
+    text-align: right;
+    position: relative;
+}
+
+.container {
+    background-color: WHITE;
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: 2px 2px 2px #888;
+}
+
+footer {
+	font-size: 80%;
+	font-style: italic;
+	border-style: double;
+	border-color: gray;
+	padding: 10px;
+	color: #4C036E;
+}
+
+.headertwo {
+	font-size: 20px;
+	color: #4C036E;
+	padding: 20px;
+	font-weight: bold;
+	padding: 1em;
+	text-decoration: none;
+}
+
+.subtitle {
+	font-size: 18px;
+	color: #116189;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.image {
+	height: 40%;
+	width: 40%;
+	padding: 10px;
+}
+
+.imagetwo {
+	height: 40%;
+	width: 40%;
+	padding: 10px;
+}
+
+article {
+	font-style: italic;
+	font-weight: bold;
+	color: #bbbe30;
+	border-color: #62247f;
+	border-style: double;
+	margin: 5px;
+}
+
+dd {
+	font-style: italic;
+	color: #4C036E;
+}
+
+dt {
+	font-weight: bold;
+	font-size: 25px;
+
+}
+}
