@@ -41,6 +41,7 @@ h2.description {
 	font-size: 120%;
 	font-style: italic;
 	color: #4C036E;
+	clear: both;
 }
 
 h1.header {
@@ -53,6 +54,22 @@ h1.header {
 h3 {
 	font-size: 25px;
 	color: #4C036E;
+	text-align: left;
+	padding-left: 40px;
+}
+
+h4 {
+	text-align: left;
+	color: #4C036E;
+	font-style: none;
+}
+
+dt {
+	text-align: center;
+}
+
+dd {
+	text-align: center;
 }
 
 .icon-right {
@@ -64,8 +81,9 @@ h3 {
     padding-right: 10px;
     padding-bottom: 10px;
     min-height: 40px;
+    max-height: 60px;
     text-align: right;
-    position: relative;
+    clear: both;
 }
 
 .container {
@@ -83,6 +101,10 @@ footer {
 	border-color: gray;
 	padding: 10px;
 	color: #4C036E;
+}
+
+header {
+	padding-bottom: 10px;
 }
 
 .headertwo {
@@ -108,8 +130,8 @@ footer {
 }
 
 .imagetwo {
-	height: 40%;
-	width: 40%;
+	height: 30%;
+	width: 30%;
 	padding: 10px;
 }
 
@@ -118,18 +140,36 @@ article {
 	font-weight: bold;
 	color: #bbbe30;
 	border-color: #62247f;
-	border-style: double;
+	border-style: solid;
 	margin: 5px;
+
 }
 
 dd {
 	font-style: italic;
-	color: #4C036E;
+	color: black;
 }
 
 dt {
 	font-weight: bold;
 	font-size: 25px;
+	color: #4C036E;
+}
 
+.row {
+	clear: both;
+}
+
+.col {
+	width:50%;
+	display: inline-block;
+}
+
+.col.col-left {
+	display: left;
+}
+
+.col.col-right {
+	display: right;
 }
 }
