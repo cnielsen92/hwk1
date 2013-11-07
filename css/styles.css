@@ -3,7 +3,7 @@
 
 
 body {
-	background-image: url('../img/ricepaper.png');
+	background-color: white;
     background-repeat: repeat;
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
@@ -21,8 +21,17 @@ body {
 }
 
 nav.navbar ul {
-	background-color: #bbbe30;
+	background-color: #ffd040;
 	border-radius: 10px;
+	top: 0;
+	position: fixed;
+	opacity: 0.95;
+	width: 100%;
+	text-align: center;
+}
+
+nav.navbar ul:hover {
+ 	opacity: 1;
 }
 
 nav li {
@@ -33,6 +42,7 @@ nav li {
     padding: 5px;
     padding-top: 10px;
     font-family: 'La Belle Aurore', cursive;
+
 }
 
 nav a:visited,
@@ -41,15 +51,16 @@ nav a:hover {
 	color: #4C036E;
     text-decoration: none;
     font-weight: bold;
+
 }
 
 nav li:hover {
-    background-color: #F9FE40;
+    background-color: #Ffc000;
 }
 h1 {
 	font-family: 'La Belle Aurore', cursive;
 	font-size: 50px;
-	color: #4C036E;
+	color: black;
 	padding: 10px;
 	clear: both;
 }
@@ -67,26 +78,29 @@ h2.description {
 }
 h3 {
 	font-size: 25px;
-	color: #4C036E;
+	color: black;
 	text-align: left;
 	padding-left: 40px;
 }
 
 h4 {
 	text-align: left;
-	color: #4C036E;
+	color: black;
 	font-style: none;
 	padding-left:10px;
 	font-weight: bold;
 }
 
 dt {
+	font-weight: bold;
+	font-size: 25px;
+	color: black;
 	text-align: center;
 }
 
 dd {
 	text-align: center;
-	color: #4C036E;
+	color: black;
 }
 
 footer {
@@ -95,18 +109,19 @@ footer {
 	padding: 5px;
 	padding-right: 10px;
 	padding-left: 10px;
-	color: #4C036E;
+	color: black;
 	position: fixed;
 	font-family: 'La Belle Aurore', cursive;
     text-align: center;
     font-weight: bold;
-    background-color: #bbbe30;
+    background-color: #ffd040;
 	border-radius: 10px;
 	max-height: 50px;
-	top: 90%;
     bottom: 0;
-	opacity: 0.8;
-	margin: 0 auto;
+	opacity: 0.95;
+	/*margin: 0 auto;*/
+	width: 100%;
+	left: 0;
 }
 
 footer:hover {
@@ -120,30 +135,14 @@ header {
 }
 
 .image {
-	max-height: 50%;
+	height: 70%;
 	max-width: 100%;
 	padding: 10px;
 }
 
-article {
-	font-style: italic;
-	font-weight: bold;
-	color: black;
-	border-color: #62247f;
-	border-style: solid;
-	margin: 5px;
-
-}
-
-dd {
-	font-style: italic;
-	color: black;
-}
-
-dt {
-	font-weight: bold;
-	font-size: 25px;
-	color: #4C036E;
+.ddContainer {
+	width: 50%;
+	margin: 0 auto;
 }
 
 .media-object {
