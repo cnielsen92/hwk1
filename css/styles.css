@@ -124,6 +124,16 @@ footer {
 	left: 0;
 }
 
+.order {
+	position: fixed;
+	width: 300px;/*
+	min-height: 500px;*/
+	right: 30%;
+	top: 47%;
+	bottom: 53%;
+	margin-left: -300px;
+}
+
 footer:hover {
     opacity: 1;    
 }

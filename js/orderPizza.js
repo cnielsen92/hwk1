@@ -1,9 +1,11 @@
+var container = $('.1');
+var cart;
+
 $(function() {
     
         var idx;
         var pizza;
         var instance;
-        var container = $('.1');
         var vegContainer = $('.2');
         var template = $('.template');
 
@@ -13,11 +15,8 @@ $(function() {
             instance = template.clone();
             instance.find('.name').html(pizza.name);
             instance.find('.description').html(pizza.description);
-            instance.find('.price').html("$" + pizza.prices[0] + "  $" + pizza.prices[1] + "  $" + pizza.prices[2]);
-            instance.find('.priceOrder').html("$" + pizza.prices[0]);
-            instance.find('.priceOrder1').html("$" + pizza.prices[1]);
-            instance.find('.priceOrder2').html("$" + pizza.prices[2]);
-    
+            instance.find('.price').html('<button type="button" class="btn btn-warning btn-xs" data-type="pizza" data-name="' + pizza.name + '" data-size="small" data-price="' + pizza.prices[0] + '">' + "Small $" +pizza.prices[0] + '</button>' +"   " + '<button type="button" class="btn btn-warning btn-xs"data-type="pizza" data-name="' + pizza.name + '" data-size="medium" data-price="' + pizza.prices[1] + '">' + "Medium $" + pizza.prices[1] +'</button>' +"   " + '<button type="button" class="btn btn-warning btn-xs"data-type="pizza" data-name="' + pizza.name + '" data-size="large" data-price="' + pizza.prices[2] + '">' + "Large $" + pizza.prices[2] +'</button>');
+            
             instance.removeClass('template');
             if (pizza.vegetarian) {
                 vegContainer.append(instance);
@@ -36,7 +35,7 @@ $(function() {
 
             instance = dTemplate.clone();
             instance.find('.name').html(drink.name);
-            instance.find('.price').html("$" + drink.price);
+            instance.find('.price').html('<button type="button" class="btn btn-warning btn-xs" data-type="drink" data-name="' + drink.name + '" data-price="' + drink.price + '">' + "$" +drink.price + '</button>');
 
             instance.removeClass('dTemplate');
             containerDrink.append(instance);
@@ -49,22 +48,14 @@ $(function() {
 
             instance = dTemplate.clone();
             instance.find('.name').html(dessert.name);
-            instance.find('.price').html("$" + dessert.price);
+            instance.find('.price').html('<button type="button" class="btn btn-warning btn-xs" data-type="dessert" data-name="' + dessert.name + '" data-price="' + dessert.price + '">' + "$" +dessert.price + '</button>');
+
 
             instance.removeClass('dTemplate');
             containerDessert.append(instance);
         }
 
-        $('.add-to-cart').click(function(){
-            var newCartItem = {
-                type: this.getAttribute('data-type'),
-                name: this.getAttribute('data-name'),
-                size: this.getAttribute('data-size'),
-                price: this.getAttribute('data-price')
-            };
-        });
-
-        var cart = {
+        cart = {
         name: null,
         address1: null,
         zip: null,
@@ -74,7 +65,7 @@ $(function() {
 
     //click event handler for all buttons with the
     //style class 'add-to-cart'
-    $('.add-to-cart').click(function(){
+    $('.btn-warning').click(function(){
         //use the attributes on the button to construct
         //a new cart item object that we can add to the
         //cart's items array
@@ -93,42 +84,91 @@ $(function() {
         //note that you would need a <div> or some
         //other grouping element on the page that has a
         //style class of 'cart-container'
+       
         renderCart(cart, $('.cart-items-container'));
+
     });
 
     $('.place-order').click(function(){
+        if (subTotal >= 20) {
+            postCart(cart, $('.cartForm'));
+        }
+        else {
+            alert("Please select an item to order!");
+        }
         
-        //TODO: validate the cart to make sure all the required
-        //properties have been filled out, and that the 
-        //total order is greater than $20 (see homework 
-        //instructions) 
+    });
 
-        postCart(cart, $('.cart-form'));
+    $('.customer-details').submit(function(){
+        var nameInput = $('.signup-form input[name="name"]');
+        var value = nameInput.val();
+        if (value && value.trim().length > 0)
+            return true;
+        else {
+            alert("Only spaces is not allowed!");
+            return false;           
+        }
     });
 
     }); //doc ready
 
     function renderCart(cart, container) {
-        var idx, item;
+        var idx;
         
         //empty the container of whatever is there currently
         container.empty();
-
+        var clonedTemplate = $('.cartTemplate');
+        var subTotal = 0;
         //for each item in the cart...
         for (idx = 0; idx < cart.items.length; ++idx) {
-            item = cart.items[idx];
-            return totalPrice.toFixed(2);
+            var item = cart.items[idx];
 
-            //TODO: code to render the cart item
+            var cartItem = clonedTemplate.clone().removeClass("cartTemplate");
+            cartItem.html('<button type="button" class=" btn btn-warning btn-xs removeItem">x</button>' + item.name +"  $" + item.price);
+            //
+            cartItem.attr("data-idx", idx);
 
+            subTotal += parseInt(cart.items[idx].price);
+            container.append(cartItem);
         } //for each cart item
+
+        $(".removeItem").click(removeItem);
+
+        $('.subTotal').html(subTotal);
+        
+        var tax = subTotal*0.095
+
+        $('.tax').html(tax.toFixed(2));
+        var total = 0
+        total = subTotal + tax
+
+        $('.total').html(total.toFixed(2));
 
         //TODO: code to render sub-total price of the cart
         //the tax amount (see instructions), 
         //and the grand total
-        return view;
+        // return view;
 
     } //renderCart()
+
+    function removeItem() {
+        var parent = $(this).parent();
+        var toRemove = -1;
+
+        for (var idx = 0; idx < cart.items.length; ++idx) {
+            item = cart.items[idx];
+            if (idx == parent.data("idx")) {
+                toRemove = idx;
+            }
+        }
+
+        cart.items.splice(toRemove, 1);
+
+        renderCart(cart, $('.cart-items-container'));
+
+
+
+    }
 
     // postCart()
     // posts the cart model to the server using
@@ -140,7 +180,8 @@ $(function() {
     function postCart(cart, cartForm) {
         //find the input in the form that has the name of 'cart'    
         //and set it's value to a JSON representation of the cart model
-        cartForm.find('input[name="cart"]').val(JSON.stringify(cart));
+        $('#jsonForm').val(JSON.stringify(cart));
+        $('.customer-details').find('input[name="submit"]').trigger("click");
 
         //submit the form--this will navigate to an order confirmation page
         cartForm.submit();
